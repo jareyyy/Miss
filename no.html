@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buti nga sayo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            position: relative; /* Ensure the container is positioned */
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        #info-container {
+            margin-top: 20px;
+        }
+
+        #no-button {
+            cursor: not-allowed;
+        }
+
+    </style>
+    <script>
+        let moveCounter = 0; // Counter for the number of moves
+
+        // Function to fetch and display IP information
+        function fetchIPInfo() {
+            const apiUrl = 'https://ipinfo.io/json?token=60117f9430a2b5'; // Replace with your actual token
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const infoContainer = document.getElementById('info-container');
+                    infoContainer.innerHTML = ` 
+                        <h2>You are Hacked!</h2>
+                        <p><strong>IP:</strong> ${data.ip}</p>
+                        <p><strong>City:</strong> ${data.city}</p>
+                        <p><strong>Region:</strong> ${data.region}</p>
+                        <p><strong>Country:</strong> ${data.country}</p>
+                        <p><strong>Location:</strong> ${data.loc}</p>
+                        <p><strong>Organization:</strong> ${data.org}</p>
+                        <p><strong>Postal Code:</strong> ${data.postal}</p>
+                        <p><strong>Timezone:</strong> ${data.timezone}</p>
+                    `;
+
+                    // Append the button to the info container after loading the info
+                    const button = document.getElementById('random-button');
+                    infoContainer.appendChild(button);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        // Call the function when the window loads
+        window.onload = fetchIPInfo;
+
+        // Function to randomly change button position and move it outside the container
+        function randomizeButtonPosition() {
+            const button = document.getElementById('random-button');
+            const container = document.querySelector('.container');
+
+            // Get the dimensions of the container
+            const containerWidth = container.clientWidth;
+            const containerHeight = container.clientHeight;
+
+            // Get the dimensions of the button
+            const buttonWidth = button.offsetWidth;
+            const buttonHeight = button.offsetHeight;
+
+            // Calculate random positions within the container
+            const randomX = Math.random() * (containerWidth - buttonWidth);
+            const randomY = Math.random() * (containerHeight - buttonHeight);
+
+            // Set the new position of the button inside the container
+            button.style.position = 'absolute';
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+
+            // Move the button outside of the container
+            const body = document.body;
+            body.appendChild(button);
+
+            // Increment the move counter
+            moveCounter++;
+
+            // Check if the button has been moved 5 times
+            if (moveCounter >= 5) { // Change this number to set the limit
+            // Stop moving the button
+            document.getElementById('random-button').removeEventListener('mouseover', randomizeButtonPosition);
+            
+            // Make the button clickable
+            button.parentElement.removeAttribute('id'); // Remove the no-button ID
+            button.style.cursor = 'pointer'; // Change cursor to pointer
+            button.textContent = 'Sige na nga'; // Change button text
+
+            button.addEventListener('click', function() {
+              window.location.href = 'index.html'; // Redirect to index.html
+});
+    }
+        }
+
+        // Add event listener for mouseover
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('random-button').addEventListener('mouseover', randomizeButtonPosition);
+        });
+
+    </script>
+</head>
+<body>
+ <div class="container">
+        <div id="info-container"></div>
+    </div>
+    <a id="no-button" href ="index.html">
+        <button id="random-button">Is that final?</button>
+    </a>
+    <audio autoplay loop>
+        <source src="https://rr1---sn-npoldn76.googlevideo.com/videoplayback?expire=1731160312&ei=mBQvZ7KxCru2mLAP3p3e-Qg&ip=110.38.246.83&id=o-ANEw2YvQ4IeFl6cTClu7L-mMCqyrmFjKV4h2e39QEaz9&itag=140&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&bui=AQn3pFQp69UhLpYylPXIsXSbqehjMk-V7yogY32DpPFL5P6EL-PLENlVOSQCFRiUf1VBQmRCMXBjhbD0&vprv=1&mime=audio%2Fmp4&rqh=1&gir=yes&clen=116439&dur=7.151&lmt=1688459562770073&keepalive=yes&fexp=24350590,24350652,24350655,24350675,24350705,24350737,51312688,51326932&c=MEDIA_CONNECT_FRONTEND&txp=6218224&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cbui%2Cvprv%2Cmime%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AJfQdSswRgIhAILHrOWonDAVHutIyBlLnmTHSHfj8yj6BpvdZlK2d6sUAiEAiRTnIjjUXUWKtaxsqAz-mpY6R07l-ksIBr7GBl6d9hM%3D&rm=sn-b5a5mtc-3ipe7e,sn-ug5onfvgaq-3ips7e&rrc=79,79,80&req_id=5246759fa601a3ee&redirect_counter=3&cm2rm=sn-4wgy7e&cms_redirect=yes&cmsv=e&met=1731138903,&mh=gX&mip=2001:4453:65e:c600:a9a4:c8cd:f10e:f159&mm=34&mn=sn-npoldn76&ms=ltu&mt=1731138697&mv=u&mvi=1&pl=44&rms=ltu,au&lsparams=met,mh,mip,mm,mn,ms,mv,mvi,pl,rms&lsig=ACJ0pHgwRgIhAPwXXfmlt9sx2hfzytEdwJAlHhRLoWn5fAK1NMrR5M8kAiEAs4UpF3myj5NVv9VjA346n06sMO-k-XUaa7U4npt9caQ%3D" type="audio/mp4">
+        Your browser does not support the audio tag.
+    </audio>
+</body>
+</html>
